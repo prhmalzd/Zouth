@@ -11,6 +11,7 @@ const SetupContainer = () => {
       <AdditionalContainer
         text={"You already have an account?"}
         link={' Log In'}
+        width={'400px'}
       />
     </div>
   )
