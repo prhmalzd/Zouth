@@ -1,0 +1,16 @@
+.btn {
+  padding: 0 10px;
+  width: 150px;
+  height: 30px;
+  border: none;
+  background-color: #7e7e7e;
+  border-radius: 5px;
+  color: #fff;
+  transition: all .2s ease-in-out;
+  cursor: not-allowed;
+}
+
+.btnCheckedStyle {
+  padding: 1px 11px;
+  cursor: pointer;
+}

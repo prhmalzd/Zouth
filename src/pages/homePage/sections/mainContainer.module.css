@@ -1,0 +1,22 @@
+.mainContainer {
+  margin: 100px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+@media screen and (max-width: 850px) {
+
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-height: 400px) {
+
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
