@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Zouth/static/css/main.5379e170.css",
+    "main.js": "/Zouth/static/js/main.8041b437.js",
+    "index.html": "/Zouth/index.html",
+    "main.5379e170.css.map": "/Zouth/static/css/main.5379e170.css.map",
+    "main.8041b437.js.map": "/Zouth/static/js/main.8041b437.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5379e170.css",
+    "static/js/main.8041b437.js"
+  ]
+}
