@@ -1,0 +1,12 @@
+.world {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.worldPNG {
+  width: 100px;
+  height: auto;
+}
