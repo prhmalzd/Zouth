@@ -13,6 +13,7 @@ const OneCity = (props) => {
             name={'button'}
             type={'button'}
             value={props.text}
+            width={'100px'}
           />
         </a>
     </div>
