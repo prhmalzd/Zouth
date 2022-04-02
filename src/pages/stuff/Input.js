@@ -10,6 +10,7 @@ const Input = (props) => {
     className={`${styles.form__group} ${styles.field}`}>
       <input
         type={props.type}
+        value={props.value}
         className={`
           ${styles.form__field}
           ${props.checkedY && styles.checkedStyleY}

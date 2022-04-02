@@ -1,60 +1,50 @@
-import React, {useState} from "react";
+import React, {useState, useReducer, useEffect} from "react";
 import styles from './loginContainer.module.css'
 import Input from '../../../../stuff/Input'
 import Button from '../../../../stuff/Button'
 import ZouthLogo from '../../../../stuff/ZouthLogo'
 
-
+const usernameReducaer = (state, action) => {
+  if (action.type === 'USER_INPUT') {return {value: action.val, isValid: action.val.trim().length > 3}}
+  return {value: '', isValid: false}
+}
+const passwordReducaer = (state, action) => {
+  if (action.type === 'USER_INPUT') {return {value: action.val, isValid: action.val.trim().length > 6}}
+  return {value: '', isValid: false}
+}
 
 const LoginContainer = () => {
 
-
-  const [inputOneChecked, setinputOneChecked] = useState(false);
-  const [inputOneUnchecked, setinputOneUnchecked] = useState(false);
-
-
-  const [inputTwoChecked, setinputTwoChecked] = useState(false);
-  const [inputTwoUnchecked, setinputTwoUnchecked] = useState(false);
-
   const [btnChecked, setbtnChecked] = useState(false)
 
+  useEffect(() => {
+    const btnChecker = setTimeout(() => {
+      setbtnChecked(
+        usernameState.isValid && passwordState.isValid
+      )
+    }, 100)
+
+    return() => {
+      clearTimeout(btnChecker)
+    }
+  })
+
+
+  const [usernameState, dispatchusername] = useReducer(usernameReducaer, {
+    value: '',
+    isValid: null
+  })
+  const [passwordState, dispatchpassword] = useReducer(passwordReducaer, {
+    value: '',
+    isValid: null
+  })
 
   const onChangeInputOne = (event) => {
-    const l = event.target.value.length
-    if (l > 3) {
-      setinputOneUnchecked(false)
-      setinputOneChecked(true)
-      if(inputTwoChecked) {
-        setbtnChecked(true)
-      }
-    } else if(l === 0) {
-      setinputOneChecked(false)
-      setinputOneUnchecked(false)
-      setbtnChecked(false)
-    } else if(l <= 3) {
-      setinputOneChecked(false)
-      setinputOneUnchecked(true)
-      setbtnChecked(false)
-    }
+    dispatchusername({type: 'USER_INPUT', val: event.target.value})
   }
 
   const onChangeInputTwo = (event) => {
-    const l = event.target.value.length
-    if (l > 6) {
-      setinputTwoUnchecked(false)
-      setinputTwoChecked(true)
-      if(inputOneChecked) {
-        setbtnChecked(true)
-      }
-    } else if(l === 0) {
-      setinputTwoChecked(false)
-      setinputTwoUnchecked(false)
-      setbtnChecked(false)
-    } else if(l <= 6) {
-      setinputTwoChecked(false)
-      setinputTwoUnchecked(true)
-      setbtnChecked(false)
-    }
+    dispatchpassword({type: 'USER_INPUT', val: event.target.value})
   }
 
 
@@ -68,16 +58,16 @@ const LoginContainer = () => {
             <Input  
               type={'name'}
               placeholder={'username'}
-              checkedY={inputOneChecked}
-              unchecked={inputOneUnchecked}
+              checkedY={usernameState.isValid}
               onChangeInput={onChangeInputOne}
+              value={usernameState.value}
             />
             <Input  
               type={'password'}
               placeholder={'password'}
-              checkedY={inputTwoChecked}
-              unchecked={inputTwoUnchecked}
+              checkedY={passwordState.isValid}
               onChangeInput={onChangeInputTwo}
+              value={passwordState.value}
             />
         <div className={styles.btnholder}>
           <Button

@@ -28,14 +28,15 @@
 }
 
 .form__label {
-  padding-top: 7px;
-  padding-left: 20px;
+  padding:7px 2px 0;
+  margin-left: 18px;
   position: absolute;
   top: 0;
   display: block;
   transition: 0.2s;
   color: #7e7e7e;
   font-size: 0.9rem;
+  background-color: #fff;
 }
 
 
@@ -75,24 +76,15 @@
 
 .checkedStyleB {
   border: 2px solid #16d6fa;
+  color: #16d6fa;
 }
 .checkedStyleB:focus {
   border: 2px solid #16d6fa;
+  color: #16d6fa;
 }
 
 .checkedStyleB:focus ~ .form__label {
   color: #16d6fa;
-}
-
-.unchecked {
-  border: 2px solid red;
-}
-.unchecked:focus {
-  border: 2px solid red;
-}
-
-.unchecked:focus ~ .form__label {
-  color: red;
 }
 
 .labelcurrectY {
@@ -108,15 +100,3 @@
   font-weight: 700;
 }
 
-
-
-.labeluncurrect {
-  background-color: #fff;
-  padding: 7px 5px 0 5px;
-  color: red;
-  font-weight: 700;
-}
-
-.labeluncurrect2 {
-  color: red;
-}
