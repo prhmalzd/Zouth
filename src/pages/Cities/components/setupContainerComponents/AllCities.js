@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide  } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import useResizeAware from 'react-resize-aware';
 import "./AllCities.css";
 import { Pagination } from "swiper";
 
@@ -49,16 +49,27 @@ const cityInfos = [
 
 
 const AllCities = () => {
+  const [resizeListener, sizes] = useResizeAware();
+  const [resizeWidth, setresizeWidth] = useState('vertical')
+  useEffect(()=>{
+    if(sizes.width===400) {
+      setresizeWidth('horizontal')
+    }
+    if(sizes.width===240) {
+      setresizeWidth('vertical')
+    }
+  },[sizes.width])
   return (
     <Swiper
+        direction={resizeWidth}
         slidesPerView={3}
-        spaceBetween={30}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination]}
         className="mySwiper"
       >
+        {resizeListener}
           {
             cityInfos.map((cityInfo, i) => {
               return (
