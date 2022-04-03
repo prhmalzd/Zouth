@@ -10,7 +10,7 @@ const LogoHolder = () => {
       <span className={`${styles.circle} ${styles.blue}`}></span>     
       <span className={`${styles.circle} ${styles.yellow}`}></span>
       <span className={`${styles.circle} ${styles.purple}`}>
-        <p>Choose World</p>
+        <p>Worlds</p>
       </span>
     </div>
   )

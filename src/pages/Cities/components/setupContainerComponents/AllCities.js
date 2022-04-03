@@ -1,5 +1,11 @@
 import React from "react";
-import styles from './allCities.module.css'
+import { Swiper, SwiperSlide  } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "./AllCities.css";
+import { Pagination } from "swiper";
+
 import OneCity from "./OneCity";
 import aot1 from '../../../stuff/images/aot1.jpg'
 import op1 from '../../../stuff/images/op1.webp'
@@ -44,20 +50,30 @@ const cityInfos = [
 
 const AllCities = () => {
   return (
-    <div className={styles.allCities}>
-      {
-      cityInfos.map((cityInfo, i) => {
-      return (
-      <OneCity
-      key={i}
-      id={cityInfos[i].id}
-      image={cityInfos[i].image}
-      text={cityInfos[i].text}
-      />
-      );
-      })
-      }
-    </div>
+    <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+          {
+            cityInfos.map((cityInfo, i) => {
+              return (
+                <SwiperSlide key={i}>
+                  <OneCity
+                  key={i}
+                  id={cityInfos[i].id}
+                  image={cityInfos[i].image}
+                  text={cityInfos[i].text}
+                  />
+                </SwiperSlide>
+              );
+            })
+          }
+    </Swiper>
   )
 }
 
