@@ -1,0 +1,10 @@
+.body {
+  height: 150px;
+  border-radius: 5px;
+  border: 1px solid #EA1A7F;
+}
+
+.bodyPNG {
+  width: auto;
+  height: 150px;
+}
