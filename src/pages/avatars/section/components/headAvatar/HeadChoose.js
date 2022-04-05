@@ -1,29 +1,54 @@
+import { useContext } from 'react'
+import ImageContext from '../commonComponents/image-context'
+import styles from './headChoose.module.css'
+import OneHead from './OneHead'
+import head1 from './images/1.png'
+import head2 from './images/2.png'
+import head3 from './images/3.png'
+import head4 from './images/4.png'
+import head5 from './images/5.png'
 
-import styles from './bodyChoose.module.css'
-import ZouthLogo from '../../../../stuff/ZouthLogo'
-import OneAvatar from './OneAvatar'
 
+const HeadChoose = (props) => {
+  const imageCtx = useContext(ImageContext)
 
-const HeadChoose = () => {
+  const onClickImageHandler = (event) => {
+    event.preventDefault();
+    const src = event.target.src
+    const key = event.target.id
+    const alt = event.target.alt
+    imageCtx.addImage({srcHead: src, idHead: key, alt: alt})
+  }
   return (
-    <div className={styles.bodyChoose}>
-      <ZouthLogo
-        color={'af87ce'}
-      />
-      <div className={styles.choosingArea}>
-        <p>Choose your World</p>
-          <div className={styles.bodyContainer}>
-            <OneAvatar
-              image ={aot}
-              text={'Attack On Titans'}
+    <div className={styles.choosingArea}>
+        <p>Choose your Avatar's head</p>
+          <div className={styles.headContainer}>
+            <OneHead
+              onClickImageHandler={onClickImageHandler}
+              id={'head1'}
+              image ={head1}
             />
-            <OneAvatar
-              image ={op}
-              text={'One Piece'}
+            <OneHead
+              onClickImageHandler={onClickImageHandler}
+              id={'head2'}
+              image ={head2}
+            />
+            <OneHead
+              onClickImageHandler={onClickImageHandler}
+              id={'head3'}
+              image ={head3}
+            />
+            <OneHead
+              onClickImageHandler={onClickImageHandler}
+              id={'head4'}
+              image ={head4}
+            />
+            <OneHead
+              onClickImageHandler={onClickImageHandler}
+              id={'head5'}
+              image ={head5}
             />
           </div>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" className={`${styles.svg} ${styles.backArrow}`} width="24" height="24" viewBox="0 0 24 24"><path className={styles.svg} fill="#af87ce" d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
     </div>
   )
 }

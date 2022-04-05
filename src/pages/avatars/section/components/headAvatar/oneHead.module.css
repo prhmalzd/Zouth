@@ -1,0 +1,14 @@
+.head{
+  height: 90px;
+  width: 70px;
+  background-color: #fff;
+  cursor: pointer;
+  border: 1px solid #EA1A7F;
+  border-radius: 5px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.head img {
+  cursor: pointer;
+}

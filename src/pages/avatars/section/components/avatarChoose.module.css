@@ -12,28 +12,15 @@
   margin-bottom: 20px;
 }
 
-.choosingArea p {
-  margin: 10px 0;
-  font-size: 1rem;
-  color: #EA1A7F;
-  font-weight: 600;
-}
-.bodyContainer {
+.svgContainer {
   width: 400px;
-  height: 200px;
-  border-radius: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  justify-content: space-between;
 }
 .svg {
   cursor: pointer;
 }
 .backArrow {
-  margin-left: 30px;
-  align-self: flex-start;
   transform: rotate(180deg);
 }
 
@@ -51,19 +38,6 @@
   font-weight: 600;
 }
 
-.avatarHolder {
-  height: 90px;
-  width: 70px;
-  margin: 10px 45px;
-  border: 1px solid #EA1A7F;
-  border-radius: 5px;
-}
-.avatarHolder img {
-  height: 90px;
-  width: 70px;
-  position: absolute;
-}
-
 
 @media screen and (max-width: 500px) {
 
@@ -76,11 +50,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .bodyContainer {
-    width: 240px;
-    height: 370px;
-    flex-direction: column;
   }
 
 }

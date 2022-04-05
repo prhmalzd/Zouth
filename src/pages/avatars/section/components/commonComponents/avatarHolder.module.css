@@ -1,0 +1,12 @@
+.avatarHolder {
+  height: 90px;
+  width: 70px;
+  margin: 10px 45px;
+  border: 1px solid #ea1a7f;
+  border-radius: 5px;
+}
+.avatarHolder img {
+  height: 90px;
+  width: 70px;
+  position: absolute;
+}
