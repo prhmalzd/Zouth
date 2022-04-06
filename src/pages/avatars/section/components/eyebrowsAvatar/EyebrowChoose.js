@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import ImageContext from '../commonComponents/image-context'
-import styles from './headChoose.module.css'
-import OneHead from './OneHead'
-import head1 from './images/1.png'
-import head2 from './images/2.png'
-import head3 from './images/3.png'
-import head4 from './images/4.png'
-import head5 from './images/5.png'
+import styles from './eyebrowChoose.module.css'
+import OneEyeBrow from './OneEyebrow'
+import eyeBrow1 from './images/1.png'
+import eyeBrow2 from './images/2.png'
+import eyeBrow3 from './images/3.png'
+import eyeBrow4 from './images/4.png'
+import eyeBrow5 from './images/5.png'
 
 
 const HeadChoose = (props) => {
@@ -17,37 +17,37 @@ const HeadChoose = (props) => {
     const src = event.target.src
     const key = event.target.id
     const alt = event.target.alt
-    imageCtx.addImage({srcHead: src, idHead: key, alt: alt})
+    imageCtx.addImage({srcEyeBrow: src, idEyeBrow: key, alt: alt})
     props.onDoneAvatarCreating(imageCtx)
   }
   return (
     <div className={styles.choosingArea}>
         <p>Choose your Avatar's head</p>
-          <div className={styles.headContainer}>
-            <OneHead
+          <div className={styles.eyeBrowContainer}>
+            <OneEyeBrow
               onClickImageHandler={onClickImageHandler}
-              id={'head1'}
-              image ={head1}
+              id={'eyeBrow1'}
+              image ={eyeBrow1}
             />
-            <OneHead
+            <OneEyeBrow
               onClickImageHandler={onClickImageHandler}
-              id={'head2'}
-              image ={head2}
+              id={'eyeBrow2'}
+              image ={eyeBrow2}
             />
-            <OneHead
+            <OneEyeBrow
               onClickImageHandler={onClickImageHandler}
-              id={'head3'}
-              image ={head3}
+              id={'eyeBrow3'}
+              image ={eyeBrow3}
             />
-            <OneHead
+            <OneEyeBrow
               onClickImageHandler={onClickImageHandler}
-              id={'head4'}
-              image ={head4}
+              id={'eyeBrow4'}
+              image ={eyeBrow4}
             />
-            <OneHead
+            <OneEyeBrow
               onClickImageHandler={onClickImageHandler}
-              id={'head5'}
-              image ={head5}
+              id={'eyeBrow5'}
+              image ={eyeBrow5}
             />
           </div>
     </div>

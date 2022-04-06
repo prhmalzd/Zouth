@@ -13,6 +13,7 @@
 }
 
 .svgContainer {
+  height: 35px;
   width: 400px;
   display: flex;
   justify-content: space-between;
@@ -22,6 +23,9 @@
 }
 .backArrow {
   transform: rotate(180deg);
+}
+.done {
+  display: none;
 }
 
 
@@ -37,7 +41,29 @@
   color: #EA1A7F;
   font-weight: 600;
 }
+.warn {
+  position: absolute;
+  bottom: 70px;
+  background-color: red;
+  padding: 5px 15px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1rem;
+  animation: bounce .3s ease-in-out;
+}
 
+@keyframes bounce {
+  0% {
+    font-size: .5rem;
+  }
+  50% {
+    font-size: 1.1rem;
+  }
+  100% {
+    font-size: 1rem;
+  }
+  
+}
 
 @media screen and (max-width: 500px) {
 

@@ -15,6 +15,7 @@ const BodyChoose = (props) => {
     const id = event.target.id
     const alt = event.target.alt
     imageCtx.addImage({srcBody: src, idBody: id, alt: alt})
+    props.onDoneAvatarCreating(imageCtx)
   }
   return (
     <div className={styles.choosingArea}>
