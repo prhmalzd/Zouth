@@ -1,0 +1,9 @@
+.navbar {
+  top: 0;
+  background: #EA1A7F;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 50px;
+}
