@@ -1,0 +1,14 @@
+.enterActionContainer {
+  width: 100px;
+  margin: 15px 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.enterActionContainer img {
+  padding-left: 10px;
+  margin-top: 20px;
+  width: 600px;
+  height: auto;
+}

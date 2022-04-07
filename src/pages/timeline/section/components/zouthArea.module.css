@@ -1,0 +1,8 @@
+.zouthArea {
+  padding: 0 0 10px 0;
+  display: flex;
+  justify-content: start;
+  align-items:center;
+  margin: 10px;
+  border-bottom: #EA1A7F 2px solid;
+}

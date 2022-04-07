@@ -1,9 +1,13 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Navbar from "../navbar/Navbar";
+import MainContainer from './section/MainContainer'
 
 const Timeline = () => {
   return (
-    <Navbar/>
+    <Fragment>
+      <Navbar/>
+      <MainContainer/>
+    </Fragment>
   )
 }
 
