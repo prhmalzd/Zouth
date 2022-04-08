@@ -4,12 +4,12 @@ import Leftnav from './navbarComponents/Leftnav'
 import Rightnav from './navbarComponents/Rightnav'
 import styles from './navbar.module.css'
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div className={styles.navbar}>
       <Leftnav/>
       <ZouthnavLogo/>
-      <Rightnav/>
+      <Rightnav onShowAddPost={props.onShowAddPost}/>
     </div>
   )
 }

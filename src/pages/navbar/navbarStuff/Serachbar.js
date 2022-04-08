@@ -5,7 +5,7 @@ import './searchbar.scss'
 const Searchbar = () => {
   return (
     <div className="searchContainer">
-      <div class="search">
+      <div className="search">
         <input type="text" placeholder=" "/>
         <div>
           <svg>
