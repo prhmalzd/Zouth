@@ -19,6 +19,20 @@
   color: #000;
 }
 .navigation p:hover {
-  background-color: #EA1A7F;
   color: #fff;
+}
+.yellow p:hover {
+  background-color: #fec603;
+}
+.green p:hover {
+  background-color: #a8f387;
+}
+.red p:hover {
+  background-color: #EA1A7F;
+}
+.purple p:hover {
+  background-color: #af87ce;
+}
+.blue p:hover {
+  background-color: #16d6fa;
 }

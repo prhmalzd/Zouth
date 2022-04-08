@@ -1,14 +1,25 @@
 import React from "react";
 import styles from './colorBox.module.css'
+import { colors } from "./colorList";
+
 
 const ColorBox = props => {
+
   return (
     <div className={styles.colorChangeBox}>
-      <span id="color1" className={styles.colorChange} style={{backgroundColor: "#fec603"}}></span>
-      <span id="color2" className={styles.colorChange} style={{backgroundColor: "#a8f387"}}></span>
-      <span id="color3" className={styles.colorChange} style={{backgroundColor: "#EA1A7F"}}></span>
-      <span id="color4" className={styles.colorChange} style={{backgroundColor: "#af87ce"}}></span>
-      <span id="color5" className={styles.colorChange} style={{backgroundColor: "#16d6fa"}}></span>
+      {
+        colors.map((color, i) => {
+          return (
+            <span
+            key={i}
+            id={color.id}
+            className={styles.colorChange}
+            style={{backgroundColor: color.bg}}
+            onClick={props.onGetColor}>
+            </span>
+          );
+        })
+      }
     </div>
   )
 }

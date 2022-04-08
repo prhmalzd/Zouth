@@ -15,7 +15,7 @@ const Rightnav = (props) => {
       <Plus onShowAddPost={props.onShowAddPost}/>
       <Profile/>
       <Colorchange onBoxShow={boxShowingHandler}/>
-      {showColorBox && <ColorBox/>}
+      {showColorBox && <ColorBox onGetColor={props.onGetColor}/>}
     </div>
   )
 }

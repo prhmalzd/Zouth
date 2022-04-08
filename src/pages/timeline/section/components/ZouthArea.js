@@ -3,9 +3,9 @@ import styles from './zouthArea.module.css'
 import ZouthContent from './zouthareaComponents/ZouthContent'
 import ProfileInfo from './zouthareaComponents/ProfileInfo'
 
-const ZouthArea = () => {
+const ZouthArea = (props) => {
   return (
-    <div className={styles.zouthArea}>
+    <div className={styles.zouthArea} style={{borderBottomColor: props.colorTheme}}>
       <ProfileInfo/>
       <ZouthContent/>
     </div>

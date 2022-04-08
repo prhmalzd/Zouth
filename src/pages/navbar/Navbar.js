@@ -6,10 +6,10 @@ import styles from './navbar.module.css'
 
 const Navbar = (props) => {
   return (
-    <div className={styles.navbar}>
+    <div className={styles.navbar} style={{backgroundColor: props.colorTheme}}>
       <Leftnav/>
       <ZouthnavLogo/>
-      <Rightnav onShowAddPost={props.onShowAddPost}/>
+      <Rightnav onShowAddPost={props.onShowAddPost} onGetColor={props.onGetColor}/>
     </div>
   )
 }
