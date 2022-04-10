@@ -1,12 +1,33 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useReducer} from "react";
 import Navbar from "../navbar/Navbar";
 import MainContainer from './section/MainContainer'
 import AddingPost from "./section/AddingPost";
+
+const addPostReducer = (state, action) => {
+  if (action.type === 'ADD') {
+    const newArray = [...state, action]
+    return newArray
+  }
+  return ([
+    {
+    name: 'Parham',
+    logo: 'P',
+    context: 'Welcome to Zouth!',
+    src: ''
+  }
+  ])
+}
 
 const Timeline = () => {
   const [showCartValid, setShowCartValid] = useState(false)
   const [colorTheme, setColorTheme] = useState('#EA1A7F')
   const [colorThemeForHover, setColorThemeForHover] = useState('red')
+  const [addPostState, dispatchAddPost] = useReducer(addPostReducer, [{
+    name: 'Parham',
+    logo: 'P',
+    context: 'Welcome to Zouth!',
+    src: ''
+  }])
 
   const ShowingCartHandler = () => {
     setShowCartValid(true)
@@ -33,10 +54,16 @@ const Timeline = () => {
       setColorThemeForHover('blue')
     }
   }
+  const onSubmitTextHandler = (text, imageUrl) => {
+    if(text.trim()) {
+      dispatchAddPost({type: 'ADD',name: 'Parham', logo: 'P', context: text, src: imageUrl})
+      setShowCartValid(false)
+    }
+  }
 
   return (
     <Fragment>
-      {showCartValid && <AddingPost onHideAddPost={HidingCartHandler}/>}
+      {showCartValid && <AddingPost onHideAddPost={HidingCartHandler} onSubmitHandler={onSubmitTextHandler} colorTheme={colorTheme} colorThemeForHover={colorThemeForHover}/>}
       <Navbar
         colorTheme={colorTheme}
         onShowAddPost={ShowingCartHandler}
@@ -45,6 +72,7 @@ const Timeline = () => {
       <MainContainer
         colorTheme={colorTheme}
         colorThemeForHover={colorThemeForHover}
+        addPostState={addPostState}
       />
     </Fragment>
   )

@@ -7,7 +7,10 @@ import styles from './mainContainer.module.css'
 const MainContainer = (props) => {
   return (
     <div className={styles.mainContainer}>
-      <ContentContainer colorTheme={props.colorTheme}/>
+      <ContentContainer
+      colorTheme={props.colorTheme}
+      addPostState={props.addPostState}
+      />
       <Navigation colorThemeForHover={props.colorThemeForHover}/>
     </div>
   )

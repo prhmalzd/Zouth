@@ -8,3 +8,8 @@
   font-size: 1.5rem;
   color: var(--fontColor);
 }
+
+.zouthContent img {
+  margin-top: 10px;
+  width: 420px;
+}

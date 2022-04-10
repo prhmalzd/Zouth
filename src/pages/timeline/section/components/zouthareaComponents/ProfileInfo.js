@@ -1,11 +1,11 @@
 import React from "react";
 import styles from './profileInfo.module.css'
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
   return (
     <div className={styles.profileInfo}>
-      <span className={styles.profilePicture}>A</span>
-      <p className={styles.profileName}>Eren</p>
+      <span className={styles.profilePicture}>{props.logo}</span>
+      <p className={styles.profileName}>{props.name}</p>
     </div>
   )
 }
