@@ -17,6 +17,15 @@ const LoginContainer = () => {
 
   const [btnChecked, setbtnChecked] = useState(false)
 
+  const [usernameState, dispatchusername] = useReducer(usernameReducaer, {
+    value: '',
+    isValid: null
+  })
+  const [passwordState, dispatchpassword] = useReducer(passwordReducaer, {
+    value: '',
+    isValid: null
+  })
+
   useEffect(() => {
     const btnChecker = setTimeout(() => {
       setbtnChecked(
@@ -27,26 +36,19 @@ const LoginContainer = () => {
     return() => {
       clearTimeout(btnChecker)
     }
-  })
+  }, [usernameState.isValid, passwordState.isValid])
 
-
-  const [usernameState, dispatchusername] = useReducer(usernameReducaer, {
-    value: '',
-    isValid: null
-  })
-  const [passwordState, dispatchpassword] = useReducer(passwordReducaer, {
-    value: '',
-    isValid: null
-  })
-
-  const onChangeInputOne = (event) => {
+  const onChangeUsername = (event) => {
     dispatchusername({type: 'USER_INPUT', val: event.target.value})
   }
 
-  const onChangeInputTwo = (event) => {
+  const onChangePassword = (event) => {
     dispatchpassword({type: 'USER_INPUT', val: event.target.value})
   }
 
+  const submitFormHandler = event => {
+    event.preventDefault()
+  }
 
 
   return (
@@ -54,19 +56,19 @@ const LoginContainer = () => {
       <ZouthLogo
         color={'fec603'}
       />
-      <form className={styles.login}>
+      <form className={styles.login} onSubmit={submitFormHandler}>
             <Input  
               type={'name'}
               placeholder={'username'}
               checkedY={usernameState.isValid}
-              onChangeInput={onChangeInputOne}
+              onChangeInput={onChangeUsername}
               value={usernameState.value}
             />
             <Input  
               type={'password'}
               placeholder={'password'}
               checkedY={passwordState.isValid}
-              onChangeInput={onChangeInputTwo}
+              onChangeInput={onChangePassword}
               value={passwordState.value}
             />
         <div className={styles.btnholder}>

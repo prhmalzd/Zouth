@@ -80,9 +80,11 @@ const SignUpContainer = () => {
   }
 
   const onChangeCheckedInput = () => {
-    setinputCheckBox(!inputCheckBox)
+    setinputCheckBox(inputCheckBox => !inputCheckBox)
   }
-
+  const submitFormHandler = (event) => {
+    event.preventDefault()
+  }
 
 
   return (
@@ -90,22 +92,24 @@ const SignUpContainer = () => {
       <ZouthLogo
         color={'16d6fa'}
       />
-      <form className={styles.signUp}>
+      <form className={styles.signUp} onSubmit={submitFormHandler}>
             <Input  
-              type={'name'}
+              type={'username'}
               placeholder={'username'}
               value={usernameState.value}
               checkedB={usernameState.isValid}
               onChangeInput={onChangeInputOne}
             />
-            <Input  
+            <Input
+              id={'password'}
               type={'password'}
               placeholder={'password'}
               value={passwordState.value}
               checkedB={passwordState.isValid}
               onChangeInput={onChangeInputTwo}
             />
-            <Input  
+            <Input
+              id={'repassword'}
               type={'password'}
               placeholder={'Re-type password'}
               value={repasswordState.value}

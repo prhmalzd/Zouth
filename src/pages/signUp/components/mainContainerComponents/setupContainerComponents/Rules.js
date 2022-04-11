@@ -15,7 +15,7 @@ const Rules = (props) => {
           </svg>
         </label>
         <label className={styles.labelrules}>
-          i agree with
+          i agree with 
           <a href="#">terms and rules</a>
           </label>
     </div>
