@@ -15,9 +15,9 @@ const Rules = (props) => {
           </svg>
         </label>
         <label className={styles.labelrules}>
-          i agree with 
-          <a href="#">terms and rules</a>
-          </label>
+          <p>i agree with</p>
+          <p onClick={props.termAndRulesHandler}>terms and rules</p>
+        </label>
     </div>
   )
 }

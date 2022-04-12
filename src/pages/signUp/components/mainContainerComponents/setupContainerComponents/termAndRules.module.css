@@ -1,0 +1,12 @@
+.termAndRules {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.termAndRules input {
+  align-self: flex-end;
+}

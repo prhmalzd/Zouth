@@ -3,6 +3,7 @@ import styles from './signupContainer.module.css'
 import Input from '../../../../stuff/Input'
 import Button from '../../../../stuff/Button'
 import ZouthLogo from '../../../../stuff/ZouthLogo'
+import TermAndRules from './TermAndRules'
 import Rules from './Rules'
 
 const usernameReducaer = (state, action) => {
@@ -26,11 +27,13 @@ const emailReducaer = (state, action) => {
   return {value: '', isValid: false}
 }
 
-const SignUpContainer = () => {
+const SignUpContainer = (props) => {
 
   const [inputCheckBox, setinputCheckBox] = useState();
 
-  const [btnChecked, setbtnChecked] = useState(false)
+  const [btnChecked, setbtnChecked] = useState(false);
+
+  const [termAndRulesValidity , setTermAndRulesValidity] = useState(false)
 
   useEffect(() => {
     const btnChecker = setTimeout(() => {
@@ -83,17 +86,28 @@ const SignUpContainer = () => {
     setinputCheckBox(inputCheckBox => !inputCheckBox)
   }
   const submitFormHandler = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+
+    if(!btnChecked) {
+      return;
+    }
+    console.log(usernameState.value , passwordState.value , repasswordState.value , emailState.value , inputCheckBox)
+  }
+
+  const termAndRulesHandler = () => {
+    setTermAndRulesValidity(true)
+    props.termAndRules()
+  }
+  const gotitTermsAndRules = () => {
+    setTermAndRulesValidity(false)
+    props.termAndRules()
   }
 
 
-  return (
-    <div className={styles.signUpContainer}>
-      <ZouthLogo
-        color={'16d6fa'}
-      />
-      <form className={styles.signUp} onSubmit={submitFormHandler}>
-            <Input  
+  const mainFormSignUp = (
+    <form className={styles.signUp} onSubmit={submitFormHandler}>
+            <Input
+              id={'username'}
               type={'username'}
               placeholder={'username'}
               value={usernameState.value}
@@ -116,7 +130,8 @@ const SignUpContainer = () => {
               checkedB={repasswordState.isValid}
               onChangeInput={onChangeInputThree}
             />
-            <Input  
+            <Input
+              id={'email'}
               type={'email'}
               placeholder={'E-mail'}
               value={emailState.value}
@@ -124,7 +139,8 @@ const SignUpContainer = () => {
               onChangeInput={onChangeInputFour}
             />
             <Rules
-            onChangeInput={onChangeCheckedInput}/>
+            onChangeInput={onChangeCheckedInput}
+            termAndRulesHandler={termAndRulesHandler}/>
         <div className={styles.btnholder}>
           <Button
             checkedBtn={btnChecked}
@@ -133,9 +149,17 @@ const SignUpContainer = () => {
             value={"Sign In"}
             bg={'16d6fa'}
           />
-        </div>
-            
+        </div>  
       </form>
+  )
+
+  return (
+    <div className={`${styles.signUpContainer} ${termAndRulesValidity && styles.termAndRulesContainer}`}>
+      <ZouthLogo
+        color={'16d6fa'}
+      />
+      {!termAndRulesValidity && mainFormSignUp}
+      {termAndRulesValidity && <TermAndRules gotitTermsAndRules={gotitTermsAndRules}/>}
     </div>
   )
 }

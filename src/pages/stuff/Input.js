@@ -9,7 +9,7 @@ const Input = (props) => {
     <div 
     className={`${styles.form__group} ${styles.field}`}>
       <input
-        id={props.type}
+        id={props.id}
         type={props.type}
         value={props.value}
         className={`
@@ -29,7 +29,7 @@ const Input = (props) => {
         ${props.checkedB && styles.labelcurrectB}
         ${props.unchecked && styles.labeluncurrect}
         `}
-        htmlFor={props.type}>
+        htmlFor={props.id}>
           {props.placeholder}
       </label>
     </div>

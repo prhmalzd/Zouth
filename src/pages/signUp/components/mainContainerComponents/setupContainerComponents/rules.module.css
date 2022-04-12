@@ -11,10 +11,14 @@
 
 .labelrules {
   margin: 0 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
 }
 
-.labelrules a {
+.labelrules p:last-child {
   cursor: pointer;
+  color: blue ;
 }
 
 

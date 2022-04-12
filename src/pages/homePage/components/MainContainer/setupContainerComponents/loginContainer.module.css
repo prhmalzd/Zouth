@@ -12,6 +12,9 @@
   border-top-right-radius: 10px;
   margin-bottom: 20px;
 }
+.forgetPassConteiner {
+  height: 250px;
+}
 
 .login {
   display: flex;
@@ -29,7 +32,7 @@
   align-items: center;
 }
 
-.loginContainer a {
+.loginContainer p:last-child {
   font-size: .7rem;
   text-decoration: none;
   margin-bottom: 10px;

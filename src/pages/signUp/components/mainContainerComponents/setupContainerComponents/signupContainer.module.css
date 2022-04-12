@@ -13,7 +13,10 @@
   border-top-right-radius: 10px;
   margin-bottom: 20px;
 }
-
+.termAndRulesContainer {
+  height: 350px;
+  border-radius: 10px;
+}
 
 .signUp {
   display: flex;
