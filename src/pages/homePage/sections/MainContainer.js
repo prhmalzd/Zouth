@@ -6,22 +6,11 @@ import styles from './mainContainer.module.css'
 
 
 const MainContainer = (props) => {
-  const [resetPass, setResetPass] = useState(false)
-  const [forgetPassPage , setForgetPassPage] = useState(false)
-
-  const forgetPasswordHandler = () => {
-    setForgetPassPage(true)
-    props.forgetPasswordHandler()
-  }
-
-  const resetPassHandler = () => {
-    setResetPass(true)
-    setForgetPassPage(false)
-  }
+  
   return (
     <div className={styles.mainContainer}>
-      <LogoHolder resetPass={resetPass} forgetPassPage={forgetPassPage}/>
-      <SetupContainer resetPassHandler={resetPassHandler} forgetPasswordHandler={forgetPasswordHandler}/>
+      <LogoHolder/>
+      <SetupContainer/>
     </div>
   )
 }

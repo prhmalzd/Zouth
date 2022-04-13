@@ -1,7 +1,10 @@
-import { createStore } from 'redux'
+import { configureStore } from "@reduxjs/toolkit"
 
-const infoReducer = (state, action) => {}
+import forgetpassReducer from './forgetpassword'
+import tnrReducer from './termsAndRules'
 
-const store = createStore(infoReducer)
+const store = configureStore({
+  reducer: {fp : forgetpassReducer, tnr: tnrReducer}
+})
 
 export default store

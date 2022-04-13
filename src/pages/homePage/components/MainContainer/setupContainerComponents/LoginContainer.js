@@ -1,4 +1,6 @@
 import React, {useState, useReducer, useEffect} from "react";
+import { useDispatch , useSelector } from "react-redux";
+import { forgetpassActions } from "../../../../../store/forgetpassword";
 import styles from './loginContainer.module.css'
 import Input from '../../../../stuff/Input'
 import Button from '../../../../stuff/Button'
@@ -22,11 +24,11 @@ const emailReducaer = (state, action) => {
 }
 
 const LoginContainer = (props) => {
-
+  const showFP = useSelector((state) => state.fp.forgetpassPage);
+  const resetfp = useSelector((state) => state.fp.changepass);
+  const dispatch = useDispatch();
   const [btnChecked, setbtnChecked] = useState(false)
   const [fPbtnChecked, setFPbtnChecked] = useState(false)
-
-  const [forgetPassClicked , setForgetPassClicked] = useState(false)
 
   const [usernameState, dispatchusername] = useReducer(usernameReducaer, {
     value: '',
@@ -69,17 +71,14 @@ const LoginContainer = (props) => {
 
 
   const fPHandler = () => {
-    props.forgetPasswordHandler()
-    setForgetPassClicked(true)
+    dispatch(forgetpassActions.showForgetPassPage())
   }
   const onChangeEmail = (event) => {
     dispatchemail({type: 'USER_INPUT', val: event.target.value})
   }
   const submitResetpassHandler = event => {
     event.preventDefault()
-    if (fPbtnChecked) {
-      props.forgetResetSubmitHandler()
-    }
+      dispatch(forgetpassActions.submitchangepassword())
   }
 
   const mainLogin = (
@@ -134,16 +133,16 @@ const LoginContainer = (props) => {
     </form>
   )
   
-  const passwordStyleValidity = `${styles.loginContainer} ${forgetPassClicked && styles.forgetPassConteiner}`
+  const passwordStyleValidity = `${styles.loginContainer} ${showFP && styles.forgetPassConteiner}`
 
   return (
     <div className={passwordStyleValidity}>
       <ZouthLogo
-        color={!fPbtnChecked && forgetPassClicked ? '7e7e7e' : 'fec603'}
+        color={!fPbtnChecked && showFP ? '7e7e7e' : 'fec603'}
       />
-      {!forgetPassClicked && mainLogin}
-      {forgetPassClicked && forgetPass}
-      {!forgetPassClicked && <p onClick={fPHandler}> forgot password? </p>}
+      {!showFP && mainLogin}
+      {showFP && forgetPass}
+      {!showFP && <p onClick={fPHandler}> forgot password? </p>}
     </div>
   )
 }

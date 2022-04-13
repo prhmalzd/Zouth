@@ -1,19 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import LoginContainer from './setupContainerComponents/LoginContainer'
 import AdditionalContainer from '../../../stuff/AdditionalContainer'
-
 import styles from './setupContainer.module.css'
 
 const SetupContainer = (props) => {
-  const [forgetPass, setForgetPass] = useState(false)
-  
-  const forgetPasswordHandler = () => {
-    setForgetPass(true)
-    props.forgetPasswordHandler()
-  }
-  const resetPasswordSubmitHandler = () => {
-    props.resetPassHandler()
-  }
+const showFP = useSelector((state) => state.fp.forgetpassPage)
 
 
   const loginAdditionalConteiner = (
@@ -24,16 +16,16 @@ const SetupContainer = (props) => {
   )
   const forgetpassAdditionalConteiner = (
     <AdditionalContainer
-      text={"Did you remember your Password? Back to"}
-      link={' Sign In'}
+      text={"Did you remember your Password? "}
+      link={' Back to Sign In'}
     />
   )
 
   return (
     <div className={styles.setupContainer}>
-      <LoginContainer forgetPasswordHandler={forgetPasswordHandler} forgetResetSubmitHandler={resetPasswordSubmitHandler}/>
-      {!forgetPass && loginAdditionalConteiner}
-      {forgetPass && forgetpassAdditionalConteiner}
+      <LoginContainer/>
+      {!showFP && loginAdditionalConteiner}
+      {showFP && forgetpassAdditionalConteiner}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useReducer} from "react";
+import { useSelector } from "react-redux";
 import styles from './signupContainer.module.css'
 import Input from '../../../../stuff/Input'
 import Button from '../../../../stuff/Button'
@@ -30,10 +31,9 @@ const emailReducaer = (state, action) => {
 const SignUpContainer = (props) => {
 
   const [inputCheckBox, setinputCheckBox] = useState();
-
   const [btnChecked, setbtnChecked] = useState(false);
 
-  const [termAndRulesValidity , setTermAndRulesValidity] = useState(false)
+  const showtnr = useSelector((state) => state.tnr.tnrpage)
 
   useEffect(() => {
     const btnChecker = setTimeout(() => {
@@ -94,14 +94,7 @@ const SignUpContainer = (props) => {
     console.log(usernameState.value , passwordState.value , repasswordState.value , emailState.value , inputCheckBox)
   }
 
-  const termAndRulesHandler = () => {
-    setTermAndRulesValidity(true)
-    props.termAndRules()
-  }
-  const gotitTermsAndRules = () => {
-    setTermAndRulesValidity(false)
-    props.termAndRules()
-  }
+
 
 
   const mainFormSignUp = (
@@ -139,8 +132,7 @@ const SignUpContainer = (props) => {
               onChangeInput={onChangeInputFour}
             />
             <Rules
-            onChangeInput={onChangeCheckedInput}
-            termAndRulesHandler={termAndRulesHandler}/>
+            onChangeInput={onChangeCheckedInput}/>
         <div className={styles.btnholder}>
           <Button
             checkedBtn={btnChecked}
@@ -154,12 +146,12 @@ const SignUpContainer = (props) => {
   )
 
   return (
-    <div className={`${styles.signUpContainer} ${termAndRulesValidity && styles.termAndRulesContainer}`}>
+    <div className={`${styles.signUpContainer} ${showtnr && styles.termAndRulesContainer}`}>
       <ZouthLogo
         color={'16d6fa'}
       />
-      {!termAndRulesValidity && mainFormSignUp}
-      {termAndRulesValidity && <TermAndRules gotitTermsAndRules={gotitTermsAndRules}/>}
+      {!showtnr && mainFormSignUp}
+      {showtnr && <TermAndRules/>}
     </div>
   )
 }

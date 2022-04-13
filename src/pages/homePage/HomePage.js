@@ -1,18 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import styles from './homePage.module.css'
 
 import MainContainer from './sections/MainContainer'
 import InfoContaiener from './sections/InfoContainer'
 
 const HomePage = () => {
-const [forgrtPass , setForgetPass] = useState(false)
-const forgetPasswordHandler = () => {
-  setForgetPass(true)
-}
+const showFP = useSelector((state) => state.fp.forgetpassPage)
   return (
     <div className={styles.main}>
-      <MainContainer forgetPasswordHandler={forgetPasswordHandler}/>
-      {!forgrtPass && <InfoContaiener />}
+      <MainContainer/>
+      {!showFP && <InfoContaiener />}
     </div>
   )
 }

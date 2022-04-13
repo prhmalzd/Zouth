@@ -1,12 +1,18 @@
+import { useDispatch } from 'react-redux'
+import { tnrActions } from '../../../../../store/termsAndRules'
 import styles from './termAndRules.module.css'
 import Button from '../../../../stuff/Button'
+
+
 const TermAndRules = (props) => {
-  const dosth = (event) => {
+  const dispatch = useDispatch()
+
+  const hidetnr = (event) => {
     event.preventDefault()
-    props.gotitTermsAndRules()
+    dispatch(tnrActions.hidetnr())
   }
   return (
-    <form className={styles.termAndRules} onSubmit={dosth}>
+    <form className={styles.termAndRules} onSubmit={hidetnr}>
       <ol>
         <li>Have Fun!</li>
         <li>Have More Fun!</li>

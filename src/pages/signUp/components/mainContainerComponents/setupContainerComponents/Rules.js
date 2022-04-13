@@ -1,11 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styles from './rules.module.css'
+import { tnrActions } from "../../../../../store/termsAndRules";
 
 
 const Rules = (props) => {
   const onChangeHandler = (event) => {
     props.onChangeInput(event)
     }
+  const dispatch = useDispatch()
+  const showtnr = () => {
+    dispatch(tnrActions.showtnr())
+  } 
   return (
     <div className={styles.rules}>
         <label className={`${styles.checkbox} ${styles.path}`}>
@@ -16,7 +22,7 @@ const Rules = (props) => {
         </label>
         <label className={styles.labelrules}>
           <p>i agree with</p>
-          <p onClick={props.termAndRulesHandler}>terms and rules</p>
+          <p onClick={showtnr}>terms and rules</p>
         </label>
     </div>
   )
