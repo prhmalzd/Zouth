@@ -18,17 +18,16 @@
   justify-content: space-evenly;
   align-items: center;
   border-radius: 20px;
-  animation: show .4s ease;
+  animation: show 0.4s ease;
 }
 
 @keyframes show {
   from {
     opacity: 0;
-    top : 0
+    top: 0;
   }
   to {
     opacity: 1;
     top: 46px;
   }
-  
 }
