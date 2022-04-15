@@ -6,6 +6,7 @@ import styles from "./addingPost.module.css";
 const AddingPost = (props) => {
   const colorTheme = useSelector((state) => state.cCh.colorpage);
   const coloronHover = useSelector((state) => state.cCh.coloronHover);
+  const [errorHandler, setErrorHandler] = useState(false);
 
   const textAreaContent = useRef();
   const [imageUrl, setImageUrl] = useState("");
@@ -13,12 +14,20 @@ const AddingPost = (props) => {
   const onSubmitTextContent = () => {
     const text = textAreaContent.current.value;
     props.onSubmitHandler(text, imageUrl);
+    if (!text.trim()) {
+      setErrorHandler(true);
+      return;
+    }
   };
 
   const onEnterHandler = (key) => {
+    const text = textAreaContent.current.value;
     if (key.code === "Enter") {
-      const text = textAreaContent.current.value;
       props.onSubmitHandler(text, imageUrl);
+    }
+    if (text.trim()) {
+      setErrorHandler(false);
+      return;
     }
   };
 
@@ -29,7 +38,7 @@ const AddingPost = (props) => {
   return (
     <Modal onHideAddPost={props.onHideAddPost}>
       <p onClick={props.onHideAddPost}>Close</p>
-      <div className={styles.postArea}>
+      <div className={`${styles.postArea} ${errorHandler && styles.errorArea}`}>
         <textarea
           type="text"
           name="text"
@@ -62,6 +71,7 @@ const AddingPost = (props) => {
           </p>
         </div>
       </div>
+      {errorHandler && <p className={styles.error}>Pls write something...</p>}
       <button
         className={`${styles.zouthBtn} ${styles[coloronHover]}`}
         onClick={onSubmitTextContent}

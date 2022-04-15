@@ -1,13 +1,12 @@
 import React from "react";
-import styles from './input.module.css'
+import styles from "./input.module.css";
 
 const Input = (props) => {
   const onChangeHandler = (event) => {
-  props.onChangeInput(event)
-  }
+    props.onChangeInput(event);
+  };
   return (
-    <div 
-    className={`${styles.form__group} ${styles.field}`}>
+    <div className={`${styles.form__group} ${styles.field}`}>
       <input
         id={props.id}
         type={props.type}
@@ -21,6 +20,7 @@ const Input = (props) => {
         placeholder={props.placeholder}
         required
         onChange={onChangeHandler}
+        onBlur={props.onBlurHandler}
       />
       <label
         className={`
@@ -29,12 +29,12 @@ const Input = (props) => {
         ${props.checkedB && styles.labelcurrectB}
         ${props.unchecked && styles.labeluncurrect}
         `}
-        htmlFor={props.id}>
-          {props.placeholder}
+        htmlFor={props.id}
+      >
+        {props.placeholder}
       </label>
     </div>
-  )
-
-}
+  );
+};
 
 export default Input;

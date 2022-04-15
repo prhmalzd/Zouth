@@ -1,150 +1,128 @@
-import React, {useState, useReducer, useEffect} from "react";
-import { useDispatch , useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { forgetpassActions } from "../../../../../store/forgetpassword";
-import styles from './loginContainer.module.css'
-import Input from '../../../../stuff/Input'
-import Button from '../../../../stuff/Button'
-import ZouthLogo from '../../../../stuff/ZouthLogo'
-
-const usernameReducaer = (state, action) => {
-  if (action.type === 'USER_INPUT') {return {value: action.val, isValid: action.val.trim().length > 3}}
-  return {value: '', isValid: false}
-}
-const passwordReducaer = (state, action) => {
-  if (action.type === 'USER_INPUT') {return {value: action.val, isValid: action.val.trim().length > 6}}
-  return {value: '', isValid: false}
-}
-const emailReducaer = (state, action) => {
-  const validateEmail = (email) => {
-    var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-  }
-  if (action.type === 'USER_INPUT') {return {value: action.val, isValid: validateEmail(action.val)}}
-  return {value: '', isValid: false}
-}
+import { formActions } from "../../../../../store/form-redux";
+import styles from "./loginContainer.module.css";
+import Input from "../../../../stuff/Input";
+import Button from "../../../../stuff/Button";
+import ZouthLogo from "../../../../stuff/ZouthLogo";
 
 const LoginContainer = (props) => {
   const showFP = useSelector((state) => state.fp.forgetpassPage);
-  const resetfp = useSelector((state) => state.fp.changepass);
+  const { isValid: usernameValidity, isEmpty: isEmptyUsername } = useSelector(
+    (state) => state.form.username
+  );
+  const { isValid: passwordValidity, isEmpty: isEmptyPassword } = useSelector(
+    (state) => state.form.password
+  );
+  const { isValid: emailValidity, isEmpty: isEmptyEmail } = useSelector(
+    (state) => state.form.email
+  );
   const dispatch = useDispatch();
-  const [btnChecked, setbtnChecked] = useState(false)
-  const [fPbtnChecked, setFPbtnChecked] = useState(false)
 
-  const [usernameState, dispatchusername] = useReducer(usernameReducaer, {
-    value: '',
-    isValid: null
-  })
-  const [passwordState, dispatchpassword] = useReducer(passwordReducaer, {
-    value: '',
-    isValid: null
-  })
-  const [emailState, dispatchemail] = useReducer(emailReducaer, {
-    value: '',
-    isValid: null
-  })
-
+  const [btnChecked, setbtnChecked] = useState(false);
+  const [fPbtnChecked, setFPbtnChecked] = useState(false);
 
   useEffect(() => {
-    const btnChecker = setTimeout(() => {
-      setbtnChecked(
-        usernameState.isValid && passwordState.isValid
-      )
-      setFPbtnChecked(emailState.isValid)
-    }, 100)
-
-    return() => {
-      clearTimeout(btnChecker)
-    }
-  }, [usernameState.isValid, passwordState.isValid, emailState.isValid])
+    setbtnChecked(usernameValidity && passwordValidity);
+    setFPbtnChecked(emailValidity);
+  }, [usernameValidity, passwordValidity, emailValidity]);
 
   const onChangeUsername = (event) => {
-    dispatchusername({type: 'USER_INPUT', val: event.target.value})
-  }
+    dispatch(formActions.usernameChangeHandler(event.target.value));
+  };
+  const onBlurUsernameHandler = (event) => {
+    dispatch(formActions.usernameBlurHandler(event.target.value));
+  };
 
   const onChangePassword = (event) => {
-    dispatchpassword({type: 'USER_INPUT', val: event.target.value})
-  }
+    dispatch(formActions.passwordChangeHandler(event.target.value));
+  };
+  const onBlurPasswordHandler = (event) => {
+    dispatch(formActions.passwordBlurHandler(event.target.value));
+  };
 
-  const submitFormHandler = event => {
-    event.preventDefault()
-  }
-
+  const onChangeEmail = (event) => {
+    dispatch(formActions.emailChangeHandler(event.target.value));
+  };
+  const onBlurEmailHandler = (event) => {
+    dispatch(formActions.emailBlurHandler(event.target.value));
+  };
 
   const fPHandler = () => {
-    dispatch(forgetpassActions.showForgetPassPage())
-  }
-  const onChangeEmail = (event) => {
-    dispatchemail({type: 'USER_INPUT', val: event.target.value})
-  }
-  const submitResetpassHandler = event => {
-    event.preventDefault()
-      dispatch(forgetpassActions.submitchangepassword())
-  }
+    dispatch(forgetpassActions.showForgetPassPage());
+  };
+
+  const submitResetpassHandler = (event) => {
+    event.preventDefault();
+    dispatch(forgetpassActions.submitchangepassword());
+  };
 
   const mainLogin = (
-    <form className={styles.login} onSubmit={submitFormHandler}>
-      <Input  
-        type={'name'}
-        placeholder={'username'}
-        checkedY={usernameState.isValid}
+    <form className={styles.login}>
+      <Input
+        type={"text"}
+        placeholder={"username"}
+        checkedY={usernameValidity}
         onChangeInput={onChangeUsername}
-        value={usernameState.value}
+        onBlurHandler={onBlurUsernameHandler}
       />
-      <Input  
-      type={'password'}
-      placeholder={'password'}
-      checkedY={passwordState.isValid}
-      onChangeInput={onChangePassword}
-      value={passwordState.value}
+      {isEmptyUsername && <p>pls fill it.</p>}
+      <Input
+        type={"password"}
+        placeholder={"password"}
+        checkedY={passwordValidity}
+        onChangeInput={onChangePassword}
+        onBlurHandler={onBlurPasswordHandler}
       />
+      {isEmptyPassword && <p>pls fill it.</p>}
       <div className={styles.btnholder}>
         <Button
           checkedBtn={btnChecked}
           name={"btn"}
           type={"submit"}
           value={"Sign In"}
-          bg={'fec603'}
+          bg={"fec603"}
         />
       </div>
-            
     </form>
-  )
+  );
 
   const forgetPass = (
     <form className={styles.login} onSubmit={submitResetpassHandler}>
       <Input
-        id={'email'}
-        type={'email'}
-        placeholder={'Enter your Email!'}
+        id={"email"}
+        type={"email"}
+        placeholder={"Enter your Email!"}
         checkedY={true}
         onChangeInput={onChangeEmail}
-        value={emailState.value}
+        onBlurHandler={onBlurEmailHandler}
       />
+      {isEmptyEmail && <p>pls fill it.</p>}
       <div className={styles.btnholder}>
-      <Button
+        <Button
           checkedBtn={fPbtnChecked}
           name={"btn"}
           type={"submit"}
           value={"Reset my Password"}
-          bg={'fec603'}
+          bg={"fec603"}
         />
       </div>
-            
     </form>
-  )
-  
-  const passwordStyleValidity = `${styles.loginContainer} ${showFP && styles.forgetPassConteiner}`
+  );
+
+  const passwordValidityStyle = `${styles.loginContainer} ${
+    showFP && styles.forgetPassConteiner
+  }`;
 
   return (
-    <div className={passwordStyleValidity}>
-      <ZouthLogo
-        color={!fPbtnChecked && showFP ? '7e7e7e' : 'fec603'}
-      />
+    <div className={passwordValidityStyle}>
+      <ZouthLogo color={!fPbtnChecked && showFP ? "7e7e7e" : "fec603"} />
       {!showFP && mainLogin}
       {showFP && forgetPass}
       {!showFP && <p onClick={fPHandler}> forgot password? </p>}
     </div>
-  )
-}
+  );
+};
 
 export default LoginContainer;
