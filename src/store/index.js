@@ -4,6 +4,7 @@ import forgetpassReducer from "./forgetpassword";
 import tnrReducer from "./termsAndRules";
 import colorChange from "./colorChange";
 import form from "./form-redux";
+import avatarReducer from "./avatar-redux";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     tnr: tnrReducer,
     cCh: colorChange,
     form: form,
+    avatar: avatarReducer,
   },
 });
 

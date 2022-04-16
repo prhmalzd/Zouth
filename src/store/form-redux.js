@@ -12,44 +12,60 @@ const form = createSlice({
   initialState: initialformState,
   reducers: {
     usernameChangeHandler(state, action) {
-      if (action.payload.length > 3)
-        state.username = { value: action.payload, isValid: true };
-      else state.username = { value: action.payload, isValid: false };
+      if (action.payload.length > 3) {
+        state.username.value = action.payload;
+        state.username.isValid = true;
+      } else {
+        state.username.value = action.payload;
+        state.username.isValid = false;
+      }
     },
     usernameBlurHandler(state, action) {
-      if (!action.payload.trim()) state.username = { isEmpty: true };
-      else state.username = { isEmpty: false };
+      if (!action.payload.trim()) state.username.isEmpty = true;
+      else state.username.isEmpty = false;
     },
     passwordChangeHandler(state, action) {
-      if (action.payload.length > 6)
-        state.password = { value: action.payload, isValid: true };
-      else state.password = { value: action.payload, isValid: false };
+      if (action.payload.length > 6) {
+        state.password.value = action.payload;
+        state.password.isValid = true;
+      } else {
+        state.password.value = action.payload;
+        state.password.isValid = false;
+      }
     },
     passwordBlurHandler(state, action) {
-      if (!action.payload.trim()) state.password = { isEmpty: true };
-      else state.password = { isEmpty: false };
+      if (!action.payload.trim()) state.password.isEmpty = true;
+      else state.password.isEmpty = false;
     },
     rePasswordChangeHandler(state, action) {
-      if (action.payload.value === action.payload.passwordValue)
-        state.repassword = { value: action.payload, isValid: true };
-      else state.repassword = { value: action.payload, isValid: false };
+      if (action.payload.value === action.payload.passwordValue) {
+        state.repassword.value = action.payload;
+        state.repassword.isValid = true;
+      } else {
+        state.repassword.value = action.payload;
+        state.repassword.isValid = false;
+      }
     },
     rePasswordBlurHandler(state, action) {
-      if (!action.payload.trim()) state.repassword = { isEmpty: true };
-      else state.repassword = { isEmpty: false };
+      if (!action.payload.trim()) state.repassword.isEmpty = true;
+      else state.repassword.isEmpty = false;
     },
     emailChangeHandler(state, action) {
       const validateEmail = (email) => {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
       };
-      if (validateEmail(action.payload))
-        state.email = { value: action.payload, isValid: true };
-      else state.email = { value: action.payload, isValid: false };
+      if (validateEmail(action.payload)) {
+        state.email.value = action.payload;
+        state.email.isValid = true;
+      } else {
+        state.email.value = action.payload;
+        state.email.isValid = false;
+      }
     },
     emailBlurHandler(state, action) {
-      if (!action.payload.trim()) state.email = { isEmpty: true };
-      else state.email = { isEmpty: false };
+      if (!action.payload.trim()) state.email.isEmpty = true;
+      else state.email.isEmpty = false;
     },
     reloadPage(state) {
       state.username.isValid = null;

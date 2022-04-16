@@ -7,8 +7,8 @@ import Timeline from "./pages/timeline/Timeline";
 function App() {
   return (
     <Switch>
-      <Route path="/" exact>
-        <Redirect to="/homepage/" />
+      <Route path="/zouth" exact>
+        <Redirect to="/homepage" />
       </Route>
       <Route path="/homepage">
         <HomePage />

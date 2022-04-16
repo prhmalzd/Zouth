@@ -6,7 +6,7 @@ import styles from "./loginContainer.module.css";
 import ZouthLogo from "../../../../stuff/ZouthLogo";
 import Input from "../../../../stuff/Input";
 import Button from "../../../../stuff/Button";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const LoginPage = () => {
   const { isValid: usernameValidity, isEmpty: isEmptyUsername } = useSelector(
@@ -17,10 +17,12 @@ const LoginPage = () => {
   );
   const dispatch = useDispatch();
   const [btnChecked, setbtnChecked] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(forgetpassActions.resetForgetPassPage());
-  }, []);
+  }, [dispatch]);
+
   useEffect(() => {
     setbtnChecked(usernameValidity && passwordValidity);
   }, [usernameValidity, passwordValidity]);
@@ -41,6 +43,7 @@ const LoginPage = () => {
 
   const submitLoginHandler = (event) => {
     event.preventDefault();
+    if (btnChecked) history.push("/timeline");
   };
 
   const fPHandler = () => {

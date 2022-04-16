@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { formActions } from "../../../../../store/form-redux";
+import { useHistory } from "react-router-dom";
 import styles from "./signupContainer.module.css";
 import Input from "../../../../stuff/Input";
 import Button from "../../../../stuff/Button";
@@ -9,6 +10,7 @@ import TermAndRules from "./TermAndRules";
 import Rules from "./Rules";
 
 const SignUpContainer = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const { isValid: usernameValidity, isEmpty: isEmptyUsername } = useSelector(
@@ -35,7 +37,7 @@ const SignUpContainer = (props) => {
 
   useEffect(() => {
     dispatch(formActions.reloadPage());
-  }, [showtnr]);
+  }, [showtnr, dispatch]);
 
   useEffect(() => {
     setbtnChecked(
@@ -90,8 +92,13 @@ const SignUpContainer = (props) => {
     setinputCheckBox((inputCheckBox) => !inputCheckBox);
   };
 
+  const submitSignUpHandler = (event) => {
+    event.preventDefault();
+    if (btnChecked) history.push("/signup/worlds");
+  };
+
   const mainFormSignUp = (
-    <form className={styles.signUp}>
+    <form className={styles.signUp} onSubmit={submitSignUpHandler}>
       <Input
         id={"username"}
         type={"username"}
