@@ -1,10 +1,12 @@
 import React from "react";
-import styles from './atag.module.css'
+import { Link } from "react-router-dom";
+import styles from "./atag.module.css";
 const Atag = (props) => {
   return (
-        <a className={styles.atag} href="#">{props.link}</a>
-  )
-}
-
+    <Link className={styles.atag} to={`${props.path}`}>
+      {props.link}
+    </Link>
+  );
+};
 
 export default Atag;

@@ -1,13 +1,26 @@
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-// import HomePage from "./pages/homePage/HomePage";
-import SignUp from "./pages/signUp/Signup";
-// import Worlds from './pages/worlds/Worlds'
-// import Cities from './pages/Cities/Cities'
-// import Avatars from './pages/avatars/Avatars'
-// import Timeline from "./pages/timeline/Timeline";
+import HomePage from "./pages/homePage/HomePage";
+import SignUpPath from "./pages/signUp/SignUpPath";
+import Timeline from "./pages/timeline/Timeline";
 
 function App() {
-  return <SignUp />;
+  return (
+    <Switch>
+      <Route path="/" exact>
+        <Redirect to="/homepage/" />
+      </Route>
+      <Route path="/homepage">
+        <HomePage />
+      </Route>
+      <Route path="/signup">
+        <SignUpPath />
+      </Route>
+      <Route path="/timeline">
+        <Timeline />
+      </Route>
+    </Switch>
+  );
 }
 
 export default App;

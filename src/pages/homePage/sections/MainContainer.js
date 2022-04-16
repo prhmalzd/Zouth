@@ -1,18 +1,16 @@
-import React, {useState} from "react";
-import LogoHolder from '../components/MainContainer/LogoHolder'
+import React from "react";
+import LogoHolder from "../components/MainContainer/LogoHolder";
 
-import SetupContainer from '../components/MainContainer/SetupContainer'
-import styles from './mainContainer.module.css'
-
+import SetupContainer from "../components/MainContainer/SetupContainer";
+import styles from "./mainContainer.module.css";
 
 const MainContainer = (props) => {
-  
   return (
     <div className={styles.mainContainer}>
-      <LogoHolder/>
-      <SetupContainer/>
+      <LogoHolder />
+      <SetupContainer />
     </div>
-  )
-}
+  );
+};
 
-export  default MainContainer;
+export default MainContainer;
