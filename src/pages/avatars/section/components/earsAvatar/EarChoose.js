@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { avatarActions } from "../../../../../store/avatar-redux";
 import classes from "./earChoose.module.css";
@@ -13,8 +12,6 @@ import ear5 from "./images/5.png";
 
 const EarChoose = (props) => {
   const history = useHistory();
-  const valid = useSelector((state) => state.avatar.ear.earCheck);
-  const [chooseMessage, setChooseMessage] = useState(false);
   const dispatch = useDispatch();
 
   const onClickImageHandler = (event) => {
@@ -27,8 +24,7 @@ const EarChoose = (props) => {
     );
   };
   const onChangePageHandler = () => {
-    if (valid) history.push("/signup/avatars/eyebrow-choose");
-    else setChooseMessage((chooseMessage) => !chooseMessage);
+    history.push("/signup/avatars/eyebrow-choose");
   };
 
   return (
@@ -77,7 +73,6 @@ const EarChoose = (props) => {
             />
           </svg>
         </Link>
-        {chooseMessage && <p className={styles.warn}>Please Choose!</p>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`${styles.svg} ${styles.forArrow} `}

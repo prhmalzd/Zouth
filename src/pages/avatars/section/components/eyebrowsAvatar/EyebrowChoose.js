@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { avatarActions } from "../../../../../store/avatar-redux";
 import classes from "./eyebrowChoose.module.css";
@@ -13,8 +12,6 @@ import eyeBrow5 from "./images/5.png";
 
 const EyeBrowChoose = (props) => {
   const history = useHistory();
-  const valid = useSelector((state) => state.avatar.eyeBrow.eyeBrowCheck);
-  const [chooseMessage, setChooseMessage] = useState(false);
   const dispatch = useDispatch();
 
   const onClickImageHandler = (event) => {
@@ -31,8 +28,7 @@ const EyeBrowChoose = (props) => {
     );
   };
   const onChangePageHandler = () => {
-    if (valid) history.push("/signup/avatars/eye-choose");
-    else setChooseMessage(true);
+    history.push("/signup/avatars/eye-choose");
   };
   return (
     <div className={classes.choosingArea}>
@@ -80,7 +76,6 @@ const EyeBrowChoose = (props) => {
             />
           </svg>
         </Link>
-        {chooseMessage && <p className={styles.warn}>Please Choose!</p>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`${styles.svg} ${styles.forArrow} `}

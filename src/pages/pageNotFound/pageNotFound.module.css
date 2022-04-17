@@ -1,0 +1,31 @@
+.div {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagenotfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2rem;
+  margin-bottom: 300px;
+}
+.pagenotfound p:first-child {
+  font-size: 7rem;
+  display: flex;
+}
+.pagenotfound p:first-child p {
+  transform: scaleX(-1);
+}
+
+.image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  height: auto;
+  margin-bottom: 30px;
+}

@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { avatarActions } from "../../../../../store/avatar-redux";
 import styles from "../avatarChoose.module.css";
@@ -15,8 +14,6 @@ import nose6 from "./images/6.png";
 
 const NoseChoose = (props) => {
   const history = useHistory();
-  const valid = useSelector((state) => state.avatar.nose.noseCheck);
-  const [chooseMessage, setChooseMessage] = useState(false);
   const dispatch = useDispatch();
 
   const onClickImageHandler = (event) => {
@@ -29,8 +26,7 @@ const NoseChoose = (props) => {
     );
   };
   const onChangePageHandler = () => {
-    if (valid) history.push("/timeline");
-    else setChooseMessage(true);
+    history.push("/timeline");
   };
   return (
     <div className={classes.choosingArea}>
@@ -83,14 +79,13 @@ const NoseChoose = (props) => {
             />
           </svg>
         </Link>
-        {chooseMessage && <p className={styles.warn}>Please Choose!</p>}
         <Button
           name={"done"}
           value={"Done!"}
           type={"submit"}
           width={"100px"}
           bg={"EA1A7F"}
-          checkedBtn={valid && true}
+          checkedBtn={true}
           onClick={onChangePageHandler}
         />
       </div>

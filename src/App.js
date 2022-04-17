@@ -1,6 +1,7 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homePage/HomePage";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import SignUpPath from "./pages/signUp/SignUpPath";
 import Timeline from "./pages/timeline/Timeline";
 
@@ -18,6 +19,9 @@ function App() {
       </Route>
       <Route path="/timeline">
         <Timeline />
+      </Route>
+      <Route path="*">
+        <PageNotFound />
       </Route>
     </Switch>
   );

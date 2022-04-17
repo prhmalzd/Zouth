@@ -34,9 +34,15 @@
   justify-content: center;
   align-items: center;
 }
-.mainAvatar p {
+.mainAvatar p:first-child {
   margin: 10px;
   font-size: 1rem;
+  color: #ea1a7f;
+  font-weight: 600;
+}
+.mainAvatar p:last-child {
+  margin-left: 10px;
+  font-size: 0.7rem;
   color: #ea1a7f;
   font-weight: 600;
 }

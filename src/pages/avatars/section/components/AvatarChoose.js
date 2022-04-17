@@ -15,7 +15,10 @@ const AvatarChoose = () => {
     <div className={styles.avatarChoose}>
       <ZouthLogo color={"EA1A7F"} />
       <div className={styles.mainAvatar}>
-        <p>Build your Avatar</p>
+        <div>
+          <p>Build your Own Avatar</p>
+          <p>( or Refresh to get Random Avatar )</p>
+        </div>
         <AvatarHolder />
       </div>
       <Switch>

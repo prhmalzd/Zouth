@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { avatarActions } from "../../../../../store/avatar-redux";
 import classes from "./bodyChoose.module.css";
@@ -10,8 +9,6 @@ import body2 from "./images/2.png";
 
 const BodyChoose = (props) => {
   const history = useHistory();
-  const valid = useSelector((state) => state.avatar.body.bodyCheck);
-  const [chooseMessage, setChooseMessage] = useState(false);
   const dispatch = useDispatch();
 
   const onClickImageHandler = (event) => {
@@ -24,8 +21,7 @@ const BodyChoose = (props) => {
     );
   };
   const onChangePageHandler = () => {
-    if (valid) history.push("/signup/avatars/head-choose");
-    else setChooseMessage((chooseMessage) => !chooseMessage);
+    history.push("/signup/avatars/head-choose");
   };
 
   return (
@@ -61,7 +57,6 @@ const BodyChoose = (props) => {
             />
           </svg>
         </Link>
-        {chooseMessage && <p className={styles.warn}>Please Choose!</p>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`${styles.svg} ${styles.forArrow} `}
