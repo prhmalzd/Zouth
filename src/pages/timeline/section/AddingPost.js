@@ -36,7 +36,7 @@ const AddingPost = (props) => {
     setImageUrl(imgUrl);
   };
   return (
-    <Modal onHideAddPost={props.onHideAddPost}>
+    <Modal onHide={props.onHideAddPost}>
       <p onClick={props.onHideAddPost}>Close</p>
       <div className={`${styles.postArea} ${errorHandler && styles.errorArea}`}>
         <textarea
