@@ -1,0 +1,13 @@
+.mobileNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 20px;
+}
+
+@media screen and (min-width: 700px) {
+  .mobileNav {
+    display: none;
+  }
+}

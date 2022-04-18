@@ -6,7 +6,7 @@ import styles from "./mainContainer.module.css";
 const MainContainer = (props) => {
   return (
     <div className={styles.mainContainer}>
-      <ContentContainer addPostState={props.addPostState} />
+      <ContentContainer />
       <Navigation />
     </div>
   );

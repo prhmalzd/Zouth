@@ -1,33 +1,53 @@
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import Modal from "../modalOverlay/Modal";
+import { useSelector, useDispatch } from "react-redux";
+import Modal from "../../stuff/modalOverlay/Modal";
 import styles from "./addingPost.module.css";
+import { addpostActions } from "../../../store/addingPost-redux";
 
 const AddingPost = (props) => {
   const colorTheme = useSelector((state) => state.cCh.colorpage);
   const coloronHover = useSelector((state) => state.cCh.coloronHover);
-  const [errorHandler, setErrorHandler] = useState(false);
+  const dispatch = useDispatch();
 
   const textAreaContent = useRef();
   const [imageUrl, setImageUrl] = useState("");
+  const [errorHandler, setErrorHandler] = useState(false);
 
   const onSubmitTextContent = () => {
     const text = textAreaContent.current.value;
-    props.onSubmitHandler(text, imageUrl);
     if (!text.trim()) {
       setErrorHandler(true);
       return;
     }
+    dispatch(
+      addpostActions.addPostHandler({
+        name: "Parham",
+        logo: "P",
+        context: text,
+        src: imageUrl,
+      })
+    );
+    props.onHideAddPost();
   };
 
   const onEnterHandler = (key) => {
     const text = textAreaContent.current.value;
-    if (key.code === "Enter") {
-      props.onSubmitHandler(text, imageUrl);
-    }
-    if (text.trim()) {
+    if (text.trim() && key.code !== "Enter") {
       setErrorHandler(false);
       return;
+    }
+    if (key.code === "Enter" && text.trim()) {
+      dispatch(
+        addpostActions.addPostHandler({
+          name: "Parham",
+          logo: "P",
+          context: text,
+          src: imageUrl,
+        })
+      );
+      props.onHideAddPost();
+    } else {
+      setErrorHandler(true);
     }
   };
 
@@ -35,6 +55,7 @@ const AddingPost = (props) => {
     const imgUrl = URL.createObjectURL(image.target.files[0]);
     setImageUrl(imgUrl);
   };
+
   return (
     <Modal onHide={props.onHideAddPost}>
       <p onClick={props.onHideAddPost}>Close</p>

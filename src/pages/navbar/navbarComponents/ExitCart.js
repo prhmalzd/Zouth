@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import Modal from "../../timeline/modalOverlay/Modal";
+import Modal from "../../stuff/modalOverlay/Modal";
 import styles from "./exitCart.module.css";
 import { useSelector } from "react-redux";
 
