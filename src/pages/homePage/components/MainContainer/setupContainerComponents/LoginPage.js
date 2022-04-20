@@ -44,6 +44,7 @@ const LoginPage = () => {
   const submitLoginHandler = (event) => {
     event.preventDefault();
     if (btnChecked) history.push("/timeline");
+    dispatch(formActions.reloadPage());
   };
 
   const fPHandler = () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./avatarHolder.module.css";
 import { avatarStorage } from "./avatars-storage";
@@ -30,27 +30,39 @@ const AvatarHolder = (props) => {
   const { srcNose, idNose, altNose } = useSelector(
     (state) => state.avatar.nose.noseHolder
   );
-  const ranBody = randomChoose(2, 0);
-  const ranHead = randomChoose(5, 1);
-  const ranEar = randomChoose(5, 2);
-  const ranEyeBrow = randomChoose(5, 3);
-  const ranEye = randomChoose(6, 4);
-  const ranLip = randomChoose(6, 5);
-  const ranNose = randomChoose(6, 6);
+  const [avatar, setAvatar] = useState("");
+
+  const randomChooseAvatar = () => {
+    const ranAvatar = {
+      body: randomChoose(2, 0),
+      head: randomChoose(5, 1),
+      ear: randomChoose(5, 2),
+      eyeBrow: randomChoose(5, 3),
+      eye: randomChoose(6, 4),
+      lip: randomChoose(6, 5),
+      nose: randomChoose(6, 6),
+    };
+    return ranAvatar;
+  };
+
+  useEffect(() => {
+    const ranAvatar = randomChooseAvatar();
+    setAvatar(ranAvatar);
+  }, [setAvatar]);
 
   return (
     <div className={styles.avatarHolder}>
-      <img src={srcBody ? srcBody : ranBody} id={idBody} alt={altBody} />
-      <img src={srcHead ? srcHead : ranHead} id={idHead} alt={altHead} />
-      <img src={srcEar ? srcEar : ranEar} id={idEar} alt={altEar} />
-      <img src={srcEye ? srcEye : ranEye} id={idEye} alt={altEye} />
+      <img src={srcBody ? srcBody : avatar.body} id={idBody} alt={altBody} />
+      <img src={srcHead ? srcHead : avatar.head} id={idHead} alt={altHead} />
+      <img src={srcEar ? srcEar : avatar.ear} id={idEar} alt={altEar} />
+      <img src={srcEye ? srcEye : avatar.eye} id={idEye} alt={altEye} />
       <img
-        src={srcEyeBrow ? srcEyeBrow : ranEyeBrow}
+        src={srcEyeBrow ? srcEyeBrow : avatar.eyeBrow}
         id={idEyeBrow}
         alt={altEyeBrow}
       />
-      <img src={srcLip ? srcLip : ranLip} id={idLip} alt={altLip} />
-      <img src={srcNose ? srcNose : ranNose} id={idNose} alt={altNose} />
+      <img src={srcLip ? srcLip : avatar.lip} id={idLip} alt={altLip} />
+      <img src={srcNose ? srcNose : avatar.nose} id={idNose} alt={altNose} />
     </div>
   );
 };
