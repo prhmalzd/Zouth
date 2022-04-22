@@ -1,6 +1,7 @@
 import styles from "./mobileNav.module.css";
 import ZouthnavLogo from "../navbarStuff/ZouthnavLogo";
-import Menu from "../navbarStuff/Menu";
+import MenuIcon from "../navbarStuff/Menu";
+import Menu from "./mobileNavComponents/Menu";
 import Plus from "../navbarStuff/Plus";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ const MobileNav = (props) => {
   };
   return (
     <div className={styles.mobileNav}>
-      {!toggleMenu && <Menu onShowMenu={showMenuHandler} />}
+      {!toggleMenu && <MenuIcon onShowMenu={showMenuHandler} />}
       <ZouthnavLogo mobileNav={true} />
       <div>
         <Plus
@@ -27,6 +28,7 @@ const MobileNav = (props) => {
           toggleMenu={toggleMenu}
         />
       </div>
+      {toggleMenu && <Menu />}
     </div>
   );
 };
